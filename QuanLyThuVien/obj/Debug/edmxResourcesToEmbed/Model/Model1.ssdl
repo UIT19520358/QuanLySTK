@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PASSBOOKMANAGEMENTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPassbook" Type="int" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CMND" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerAddress" Type="nvarchar(max)" />
+    <Property Name="DateDeposit" Type="date" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerMoney" Type="int" />
+  </EntityType>
+  <EntityType Name="PASSBOOK">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="200" />
+    <Property Name="DateCreate" Type="date" />
+  </EntityType>
+  <EntityType Name="PAYMENT">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatePayment" Type="date" />
+    <Property Name="IdPassbook" Type="int" Nullable="false" />
+    <Property Name="IdCustomer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RECEIPTS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateReceipts" Type="date" />
+    <Property Name="IdPassbook" Type="int" Nullable="false" />
+    <Property Name="IdCustomer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USERINFO">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRole" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="200" />
+    <Property Name="Userpassword" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="USERROLE">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__CUSTOMER__IdPass__4BAC3F29">
+    <End Role="PASSBOOK" Type="Self.PASSBOOK" Multiplicity="1" />
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASSBOOK">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="IdPassbook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PAYMENT__IdCusto__4F7CD00D">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PAYMENT__IdPassb__4E88ABD4">
+    <End Role="PASSBOOK" Type="Self.PASSBOOK" Multiplicity="1" />
+    <End Role="PAYMENT" Type="Self.PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASSBOOK">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PAYMENT">
+        <PropertyRef Name="IdPassbook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RECEIPTS__IdCust__534D60F1">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="RECEIPTS" Type="Self.RECEIPTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RECEIPTS">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RECEIPTS__IdPass__52593CB8">
+    <End Role="PASSBOOK" Type="Self.PASSBOOK" Multiplicity="1" />
+    <End Role="RECEIPTS" Type="Self.RECEIPTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASSBOOK">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RECEIPTS">
+        <PropertyRef Name="IdPassbook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USERINFO__IdRole__5812160E">
+    <End Role="USERROLE" Type="Self.USERROLE" Multiplicity="1" />
+    <End Role="USERINFO" Type="Self.USERINFO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERROLE">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="USERINFO">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PASSBOOKMANAGEMENTModelStoreContainer">
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PASSBOOK" EntityType="Self.PASSBOOK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAYMENT" EntityType="Self.PAYMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RECEIPTS" EntityType="Self.RECEIPTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERINFO" EntityType="Self.USERINFO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERROLE" EntityType="Self.USERROLE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CUSTOMER__IdPass__4BAC3F29" Association="Self.FK__CUSTOMER__IdPass__4BAC3F29">
+      <End Role="PASSBOOK" EntitySet="PASSBOOK" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PAYMENT__IdCusto__4F7CD00D" Association="Self.FK__PAYMENT__IdCusto__4F7CD00D">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PAYMENT__IdPassb__4E88ABD4" Association="Self.FK__PAYMENT__IdPassb__4E88ABD4">
+      <End Role="PASSBOOK" EntitySet="PASSBOOK" />
+      <End Role="PAYMENT" EntitySet="PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RECEIPTS__IdCust__534D60F1" Association="Self.FK__RECEIPTS__IdCust__534D60F1">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="RECEIPTS" EntitySet="RECEIPTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RECEIPTS__IdPass__52593CB8" Association="Self.FK__RECEIPTS__IdPass__52593CB8">
+      <End Role="PASSBOOK" EntitySet="PASSBOOK" />
+      <End Role="RECEIPTS" EntitySet="RECEIPTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERINFO__IdRole__5812160E" Association="Self.FK__USERINFO__IdRole__5812160E">
+      <End Role="USERROLE" EntitySet="USERROLE" />
+      <End Role="USERINFO" EntitySet="USERINFO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

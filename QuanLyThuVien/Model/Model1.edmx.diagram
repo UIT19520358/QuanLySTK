@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f9d6118cc9b46298f4ada04655ef12b" Name="Diagram1">
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.CUSTOMER" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.PASSBOOK" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.PAYMENT" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.RECEIPT" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.USERINFO" Width="1.5" PointX="8" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PASSBOOKMANAGEMENTModel.USERROLE" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="PASSBOOKMANAGEMENTModel.FK__CUSTOMER__IdPass__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="PASSBOOKMANAGEMENTModel.FK__PAYMENT__IdCusto__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="PASSBOOKMANAGEMENTModel.FK__RECEIPTS__IdCust__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="PASSBOOKMANAGEMENTModel.FK__PAYMENT__IdPassb__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="PASSBOOKMANAGEMENTModel.FK__RECEIPTS__IdPass__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="PASSBOOKMANAGEMENTModel.FK__USERINFO__IdRole__5812160E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
